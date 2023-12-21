@@ -27,7 +27,7 @@ pub mod crowdfund {
         treasury: Pubkey
     ) -> Result<()> {
         let crowd_fund: &mut Account<CrowdFund> = &mut ctx.accounts.crowd_fund;
-        let current_time = Clock::get().unwrap().unix_timestamp as u32;
+        let current_time = Clock::get().unwrap().unix_timestamp as u64;
 
         require!(
             starts_at > current_time,
@@ -71,7 +71,7 @@ pub mod crowdfund {
         crowd_fund_title: String,
         amount_to_pledge: f64
     ) -> Result<()> {
-        let current_time = Clock::get().unwrap().unix_timestamp as u32;
+        let current_time = Clock::get().unwrap().unix_timestamp as u64;
         let crowd_fund: &Account<CrowdFund> = &ctx.accounts.crowd_fund;
         let user: &mut Account<User> = &mut ctx.accounts.pledge;
 
@@ -105,7 +105,7 @@ pub mod crowdfund {
     ) -> Result<()> {
         let user_pledge_account: &mut Account<User> = &mut ctx.accounts.pledge;
         let crowd_fund: &Account<CrowdFund> = &ctx.accounts.crowd_fund;
-        let current_time = Clock::get().unwrap().unix_timestamp as u32;
+        let current_time = Clock::get().unwrap().unix_timestamp as u64;
         let lamports = sol_to_lamports(amount_to_pledge);
 
         require!(
@@ -150,7 +150,7 @@ pub mod crowdfund {
     ) -> Result<()> {
         let crowd_fund: &Account<CrowdFund> = &ctx.accounts.crowd_fund;
         let user_pledge_account: &mut Account<User> = &mut ctx.accounts.pledge;
-        let current_time = Clock::get().unwrap().unix_timestamp as u32;
+        let current_time = Clock::get().unwrap().unix_timestamp as u64;
         let lamports = sol_to_lamports(amount_to_unpledge);
         let user_balance = user_pledge_account.pledged_amount;
 
@@ -316,8 +316,8 @@ pub struct CrowdFund {
     owner: Pubkey,
     treasury: Pubkey, // After ending a crowd fund, owner must call claim instruction and funds will transfered to this account
     goal: u64,
-    starts_at: u32,
-    ends_at: u32,
+    starts_at: u64,
+    ends_at: u64,
     bump: u8,
     title: String
 }
