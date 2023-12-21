@@ -215,7 +215,7 @@ pub struct CreateCrowdFund<'info> {
     #[account(
         init,
         payer = owner,
-        space = 8 + 32 + 32 + 8 + 4 + 4 + 1 + (4 + &title.len()),
+        space = 8 + 32 + 32 + 8 + 8 + 8 + 1 + (4 + &title.len()),
         seeds = [ b"crowd_fund".as_ref(), &title.as_bytes().as_ref() ],
         bump
     )]
