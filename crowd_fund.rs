@@ -7,7 +7,7 @@ use std::mem::size_of;
 declare_id!("34T7bkuZbvy5YDKxEk1YUuNbugrb75LdpWLCyCzbgtyz");
 
 pub mod constants {
-    pub const MAX_ENDING_TIME: u32 = 2_592_000; // 30 days
+    pub const MAX_ENDING_TIME: u64 = 2_592_000; // 30 days
 }
 
 pub mod helpers {
