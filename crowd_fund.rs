@@ -291,7 +291,7 @@ pub struct Claim<'info> {
         bump = crowd_fund.bump,
         has_one = owner @ Errors::OnlyOwner,
         has_one = treasury @ Errors::InvalidTreasury,
-        constraint = (crowd_fund.ends_at < (clock.unix_timestamp as u32)) @ Errors::CrowdFundNotEnded
+        constraint = (crowd_fund.ends_at < (clock.unix_timestamp as u64)) @ Errors::CrowdFundNotEnded
     )]
     pub crowd_fund: Account<'info, CrowdFund>,
     /// CHECK: It is safe. We are just sending lamports to this account we are not going to read any data from this account or ... .
